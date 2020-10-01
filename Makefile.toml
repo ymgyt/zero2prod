@@ -1,0 +1,14 @@
+# x86_64 on Linux only.
+[tasks.lint]
+install_crate = "cargo-tarpaulin"
+command = "cargo"
+args = ["tarpaulin", "--ignore-tests"]
+
+[tasks.lint_docker]
+command = "docker"
+args = ["run", "--security-opt","seccomp=unconfined", "-v", "${PWD}:/volume", "xd009642/tarpaulin"]
+
+[tasks.audit]
+install_crate = "cargo-audit"
+command = "cargo"
+args = ["audit"]
